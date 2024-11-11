@@ -1,0 +1,9 @@
+stages:
+  - test
+
+test_job:
+  image: python:3.9
+  stage: test
+  script:
+  - pip install unittest
+  - python test_app.py
