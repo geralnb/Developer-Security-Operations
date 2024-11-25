@@ -8,20 +8,13 @@ pipeline {
         }
         stage('Install Dependencies') {
             steps {
-                sh '''
-                    python3 -m venv venv
-                    . venv/bin/activate
-                    pip install bandit
-                '''
+                sh 'pip install bandit'
             }
         }
         stage('SAST Analysis') {
             steps {
-                sh '''
-                    . venv/bin/activate
-                    bandit -f xml -o bandit-output.xml -r . || true
-                '''
-                recordIssues tools: [xml(path: 'bandit-output.xml', name: 'Bandit')]
+                sh 'bandit -f xml -o bandit-output.xml -r . || true'
+                recordIssues tools: [bandit(pattern: 'bandit-output.xml')]
             }
         }
     }
