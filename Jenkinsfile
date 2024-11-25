@@ -1,6 +1,15 @@
 pipeline {
     agent any
+    environment {
+        PATH = "/usr/bin:/usr/local/bin:${env.PATH}"
+    }
     stages {
+        stage('Setup Python') {
+            steps {
+                sh 'python3 --version'
+                sh 'pip3 --version'
+            }
+        }
         stage('Checkout') {
             steps {
                 git url: 'https://github.com/geralnb/Developer-Security-Operations.git', branch: 'main'
