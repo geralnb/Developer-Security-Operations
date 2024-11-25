@@ -6,7 +6,7 @@ def greet(name):
 
 def run_command(cmd):
     safe_cmd = shlex.split(cmd)
-    subprocess.call(cmd)
+    subprocess.call(safe_cmdcmd)
 
 if __name__ == "__main__":
     name = input("Enter your name: ")
