@@ -21,7 +21,7 @@ pipeline {
                     . venv/bin/activate
                     bandit -f xml -o bandit-output.xml -r . || true
                 '''
-                recordIssues tools: [issueParser(id: 'BANDIT', name: 'Bandit', pattern: 'bandit-output.xml')]
+                recordIssues tools: [issueParser(pattern: 'bandit-output.xml')]
             }
         }
     }
